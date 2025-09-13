@@ -34,8 +34,8 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
     if (!firstCatId) return []; // Return empty array until categories are loaded
     return [
       {
-        type: 'lottie',
-        animationData: this.cloudAnimationData,
+        type: 'image',
+        imageSrc: 'https://images.unsplash.com/photo-1660242164955-c6e208b0e43c?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         title: 'WorldPosta Marketplace',
         description: 'Deploy pre-configured apps and services on WorldPosta\'s reliable cloud infrastructure in just a few clicks.',
         buttonText: 'Explore All Apps',
