@@ -1,0 +1,36 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="lg:grid lg:grid-cols-12 lg:gap-x-12">
+    <!-- SIDEBAR -->
+    <aside class="hidden lg:block lg:col-span-3 xl:col-span-2">
+      <nav class="sticky top-24 space-y-1">
+        <h3 class="px-3 text-xs font-semibold uppercase text-gray-500 tracking-wider">On this page</h3>
+        @for(section of sections; track section.id) {
+          <a
+            (click)="scrollToSection(section.id)"
+            (keydown.enter)="scrollToSection(section.id)"
+            role="button"
+            tabindex="0"
+            [class]="activeSectionId() === section.id ? 'bg-[var(--wp-primary-bg)] text-[var(--wp-primary)]' : 'text-[var(--wp-text-secondary)] hover:bg-gray-100 hover:text-[var(--wp-text-primary)]'"
+            class="group flex items-center px-3 py-2 text-sm font-medium rounded-md cursor-pointer transition-colors"
+          >
+            <span class="truncate">{{ section.title }}</span>
+          </a>
+        }
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="lg:col-span-9 xl:col-span-10">
+      <article class="prose prose-lg max-w-none prose-h1:text-[var(--wp-secondary)] prose-h2:text-[var(--wp-secondary)] prose-h3:text-[var(--wp-secondary)] prose-a:text-[var(--wp-primary)] hover:prose-a:text-[var(--wp-primary-hover)] prose-strong:text-[var(--wp-text-primary)] prose-code:bg-gray-100 prose-code:p-1 prose-code:rounded prose-code:font-mono prose-code:text-sm prose-pre:bg-gray-800 prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-md">
+        <h1>Documentation</h1>
+        
+        @for(section of sections; track section.id) {
+          <section [id]="section.id" #sectionEl class="scroll-mt-24">
+            <h2 class="!mt-12 !mb-6">{{ section.title }}</h2>
+            <div [innerHTML]="sanitizeContent(section.content)"></div>
+          </section>
+        }
+      </article>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+{
+  "name": "WorldPosta Marketplace",
+  "description": "A marketplace for WorldPosta cloud computing services, allowing users to browse, configure, and deploy pre-configured virtual machines and applications.",
+  "requestFramePermissions": []
+}

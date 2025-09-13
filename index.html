@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="utf-8" />
+  <title>WorldPosta Marketplace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Explore the WorldPosta Marketplace to browse, configure, and deploy a wide range of pre-configured applications and virtual machines on our reliable cloud computing infrastructure." />
+  <meta name="keywords" content="cloud computing, marketplace, virtual machines, vps, application deployment, one-click apps, cloud hosting, WorldPosta" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --wp-primary: #679a41;
+      --wp-primary-hover: #5a8537;
+      --wp-primary-bg: #e3f4d7;
+
+      --wp-secondary: #293c51;
+      --wp-secondary-hover: #1f2d3d;
+
+      --wp-bg: #fcfcfc;
+      --wp-surface: #ffffff;
+      
+      --wp-text-primary: #293c51;
+      --wp-text-secondary: #5a6b7d;
+
+      --wp-border: #e2e8f0; /* Tailwind gray-200 */
+      
+      --wp-danger: #dc2626; /* Tailwind red-600 */
+      --wp-danger-bg: #fee2e2; /* Tailwind red-100 */
+      --wp-success: #16a34a; /* Tailwind green-600 */
+      --wp-success-hover: #15803d; /* Tailwind green-700 */
+      --wp-success-bg: #dcfce7; /* Tailwind green-100 */
+      --wp-warning-bg: #fef9c3; /* Tailwind yellow-100 */
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background-color: var(--wp-bg);
+      color: var(--wp-text-primary);
+    }
+
+    .animated-gradient {
+      background: linear-gradient(135deg, var(--wp-primary-bg), #d1e8ff, #e1dff5);
+      background-size: 400% 400%;
+      animation: gradient-animation 20s ease infinite;
+    }
+
+    @keyframes gradient-animation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "rxjs": "https://aistudiocdn.com/rxjs@^7.8.2?conditions=es2015",
+    "rxjs/operators": "https://aistudiocdn.com/rxjs@^7.8.2/operators?conditions=es2015",
+    "rxjs/ajax": "https://aistudiocdn.com/rxjs@^7.8.2/ajax?conditions=es2015",
+    "rxjs/webSocket": "https://aistudiocdn.com/rxjs@^7.8.2/webSocket?conditions=es2015",
+    "rxjs/testing": "https://aistudiocdn.com/rxjs@^7.8.2/testing?conditions=es2015",
+    "rxjs/fetch": "https://aistudiocdn.com/rxjs@^7.8.2/fetch?conditions=es2015",
+    "@angular/compiler": "https://next.esm.sh/@angular/compiler@^20.1.6-0?external=rxjs",
+    "@angular/platform-browser": "https://next.esm.sh/@angular/platform-browser@^20.1.6-0?external=rxjs",
+    "@angular/common/http": "https://next.esm.sh/@angular/common@^20.1.6-0/http?external=rxjs",
+    "@angular/core": "https://next.esm.sh/@angular/core@^20.1.6-0?external=rxjs",
+    "@angular/common": "https://next.esm.sh/@angular/common@^20.1.6-0?external=rxjs",
+    "@angular/router": "https://next.esm.sh/@angular/router@^20.1.6-0?external=rxjs",
+    "@angular/core/rxjs-interop": "https://next.esm.sh/@angular/core@^20.1.6-0/rxjs-interop?external=rxjs"
+  }
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-[var(--wp-bg)]">
+  <app-root></app-root>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 bg-[var(--wp-surface)] p-10 rounded-xl shadow-lg">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-bold text-[var(--wp-secondary)]">
+        Create an account to continue
+      </h2>
+      <p class="mt-2 text-center text-sm text-[var(--wp-text-secondary)]">
+        You're just one step away from deploying your new VM.
+      </p>
+    </div>
+    <form class="mt-8 space-y-6" (ngSubmit)="register()" #registerForm="ngForm">
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="full-name" class="sr-only">Full Name</label>
+          <input id="full-name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-[var(--wp-border)] placeholder-gray-500 text-[var(--wp-text-primary)] rounded-t-md focus:outline-none focus:ring-[var(--wp-primary)] focus:border-[var(--wp-primary)] focus:z-10 sm:text-sm" placeholder="Full Name">
+        </div>
+        <div>
+          <label for="email-address" class="sr-only">Email address</label>
+          <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-[var(--wp-border)] placeholder-gray-500 text-[var(--wp-text-primary)] focus:outline-none focus:ring-[var(--wp-primary)] focus:border-[var(--wp-primary)] focus:z-10 sm:text-sm" placeholder="Email address">
+        </div>
+        <div>
+          <label for="password" class="sr-only">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-[var(--wp-border)] placeholder-gray-500 text-[var(--wp-text-primary)] rounded-b-md focus:outline-none focus:ring-[var(--wp-primary)] focus:border-[var(--wp-primary)] focus:z-10 sm:text-sm" placeholder="Password">
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[var(--wp-primary)] hover:bg-[var(--wp-primary-hover)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--wp-primary)] transition">
+          Create Account & Proceed
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
