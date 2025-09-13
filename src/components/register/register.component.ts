@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -7,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   templateUrl: './register.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [FormsModule],
 })
 export class RegisterComponent {
   // FIX: Explicitly type injected Router to resolve 'unknown' type error.
