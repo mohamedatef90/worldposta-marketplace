@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -8,15 +9,13 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   templateUrl: './register.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule], // <- add CommonModule too
 })
 export class RegisterComponent {
-  // FIX: Explicitly type injected Router to resolve 'unknown' type error.
   private router: Router = inject(Router);
   private authService = inject(AuthService);
 
   register() {
-    // Mock registration logic
     this.authService.login();
     this.router.navigate(['/payment']);
   }
