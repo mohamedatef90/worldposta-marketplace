@@ -7,6 +7,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AllMarketAppsComponent } from './components/all-market-apps/all-market-apps.component';
 import { DocsComponent } from './components/docs/docs.component';
+import { PublishingComponent } from './components/publishing/publishing.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -25,6 +26,10 @@ export const APP_ROUTES: Routes = [
   {
     path: 'docs',
     component: DocsComponent,
+  },
+  {
+    path: 'publishing',
+    component: PublishingComponent,
   },
   {
     path: 'register',

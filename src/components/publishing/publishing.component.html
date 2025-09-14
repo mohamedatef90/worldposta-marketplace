@@ -1,0 +1,178 @@
+<div class="bg-gray-50/50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold tracking-tight text-[var(--wp-secondary)] sm:text-4xl">Publish an Application</h1>
+            <p class="mt-4 text-lg text-[var(--wp-text-secondary)]">
+                Fill out the form below to submit your application to the WorldPosta Marketplace.
+            </p>
+        </div>
+
+        <div class="mt-12 bg-[var(--wp-surface)] p-8 rounded-xl shadow-lg border border-[var(--wp-border)]">
+            <form [formGroup]="publishForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="space-y-8">
+                    <!-- Basic Information -->
+                    <div class="border-b border-gray-900/10 pb-8">
+                        <h2 class="text-base font-semibold leading-7 text-gray-900">Basic Information</h2>
+                        <p class="mt-1 text-sm leading-6 text-gray-600">Provide the essential details about your application.</p>
+                        <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Application Name</label>
+                                <div class="mt-2">
+                                    <input type="text" formControlName="name" id="name" class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[var(--wp-primary)] sm:text-sm sm:leading-6">
+                                    @if (submissionAttempted() && f['name'].errors) {
+                                        <div class="text-red-500 text-xs mt-1">
+                                            @if (f['name'].errors['required']) { <span>Name is required.</span> }
+                                            @if (f['name'].errors['minlength']) { <span>Name must be at least 3 characters long.</span> }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="provider" class="block text-sm font-medium leading-6 text-gray-900">Provider / Company Name</label>
+                                <div class="mt-2">
+                                    <input type="text" formControlName="provider" id="provider" class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[var(--wp-primary)] sm:text-sm sm:leading-6">
+                                     @if (submissionAttempted() && f['provider'].errors) {
+                                        <div class="text-red-500 text-xs mt-1">
+                                            @if (f['provider'].errors['required']) { <span>Provider name is required.</span> }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <div class="sm:col-span-3">
+                                <label for="category" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
+                                <div class="mt-2">
+                                    <select formControlName="category" id="category" class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--wp-primary)] sm:text-sm sm:leading-6">
+                                        <option value="" disabled>Select a category</option>
+                                        @for(cat of categories(); track cat.id) {
+                                            <option [value]="cat.id">{{cat.name}}</option>
+                                        }
+                                    </select>
+                                    @if (submissionAttempted() && f['category'].errors?.['required']) {
+                                        <p class="text-red-500 text-xs mt-1">Category is required.</p>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Base Price (USD)</label>
+                                <div class="relative mt-2 rounded-md shadow-sm">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <span class="text-gray-500 sm:text-sm">$</span>
+                                    </div>
+                                    <input type="number" formControlName="price" id="price" class="block w-full rounded-md border-0 py-2 pl-7 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[var(--wp-primary)] sm:text-sm sm:leading-6" placeholder="10.00">
+                                </div>
+                                @if (submissionAttempted() && f['price'].errors) {
+                                    <div class="text-red-500 text-xs mt-1">
+                                        @if (f['price'].errors['required']) { <span>Price is required.</span> }
+                                        @if (f['price'].errors['min']) { <span>Price must be positive.</span> }
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="col-span-full">
+                                <label for="logo" class="block text-sm font-medium leading-6 text-gray-900">Application Logo</label>
+                                <div class="mt-2 flex items-center gap-x-4">
+                                    @if (logoPreview(); as preview) {
+                                      <img [src]="preview" alt="Logo preview" class="h-24 w-24 object-contain rounded-md bg-gray-100 p-1 border">
+                                    } @else {
+                                      <div class="h-24 w-24 bg-gray-100 rounded-md flex items-center justify-center text-gray-400 border">
+                                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                          </svg>
+                                      </div>
+                                    }
+                                    <input type="file" (change)="onFileChange($event)" id="logo" accept=".jpg,.jpeg,.png,.svg" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[var(--wp-primary-bg)] file:text-[var(--wp-primary)] hover:file:bg-[var(--wp-primary-bg)]/80 cursor-pointer">
+                                </div>
+                                <p class="mt-2 text-xs text-gray-500">For best results, use a transparent background with a minimum size of 32x32 pixels. Accepted formats: JPG, PNG, SVG.</p>
+                                @if (submissionAttempted() && f['logo'].errors) {
+                                    <div class="text-red-500 text-xs mt-1">
+                                        @if (f['logo'].errors['required']) { <span>A logo is required.</span> }
+                                        @if (f['logo'].errors['invalidFileType']) { <span>Invalid file type. Please upload JPG, PNG, or SVG.</span> }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="border-b border-gray-900/10 pb-8">
+                        <h2 class="text-base font-semibold leading-7 text-gray-900">Details & Configuration</h2>
+                        <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
+                            <div class="col-span-full">
+                                <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Short Description</label>
+                                <div class="mt-2">
+                                    <input formControlName="description" id="description" placeholder="A brief, catchy summary of your app." class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[var(--wp-primary)] sm:text-sm sm:leading-6">
+                                    @if (submissionAttempted() && f['description'].errors) {
+                                        <div class="text-red-500 text-xs mt-1">
+                                            @if (f['description'].errors['required']) { <span>Short description is required.</span> }
+                                            @if (f['description'].errors['maxlength']) { <span>Must be 100 characters or less.</span> }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="col-span-full">
+                                <label for="longDescription" class="block text-sm font-medium leading-6 text-gray-900">Long Description</label>
+                                <div class="mt-2">
+                                    <textarea formControlName="longDescription" id="longDescription" rows="4" placeholder="A detailed description of features and benefits." class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[var(--wp-primary)] sm:text-sm sm:leading-6"></textarea>
+                                    @if (submissionAttempted() && f['longDescription'].errors) {
+                                        <div class="text-red-500 text-xs mt-1">
+                                            @if (f['longDescription'].errors['required']) { <span>Detailed description is required.</span> }
+                                            @if (f['longDescription'].errors['minlength']) { <span>Must be at least 50 characters long.</span> }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="col-span-full">
+                                <label for="os-dropdown-button" class="block text-sm font-medium leading-6 text-gray-900">Supported Operating Systems</label>
+                                <div class="relative mt-2" #osDropdownContainer>
+                                    <button (click)="toggleOsDropdown()" type="button" id="os-dropdown-button" class="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--wp-primary)] sm:text-sm sm:leading-6">
+                                        <span class="block truncate">{{ selectedOsDisplay() }}</span>
+                                        <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M10 3a.75.75 0 01.53.22l3.5 3.5a.75.75 0 01-1.06 1.06L10 4.81 7.03 7.78a.75.75 0 01-1.06-1.06l3.5-3.5A.75.75 0 0110 3zM10 17a.75.75 0 01-.53-.22l-3.5-3.5a.75.75 0 011.06-1.06L10 15.19l2.97-2.97a.75.75 0 011.06 1.06l-3.5 3.5A.75.75 0 0110 17z" clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </button>
+
+                                    @if (isOsDropdownOpen()) {
+                                        <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                            @for(os of availableOsOptions; track os) {
+                                                <li class="relative cursor-default select-none py-2 px-4 text-gray-900 hover:bg-gray-50">
+                                                    <label class="flex items-center w-full cursor-pointer">
+                                                        <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-[var(--wp-primary)] focus:ring-[var(--wp-primary)]" [checked]="isOsSelected(os)" (change)="onOsSelectionChange(os, $event)">
+                                                        <span class="ml-3 block truncate font-normal">{{ os }}</span>
+                                                    </label>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                                @if (submissionAttempted() && f['osOptions'].errors?.['required']) {
+                                    <p class="text-red-500 text-xs mt-1">At least one OS must be selected.</p>
+                                }
+                                <p class="mt-2 text-sm text-gray-500">Ensure your application is compatible with the selected operating systems.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submission feedback -->
+                @if(submissionSuccess()) {
+                    <div class="mt-6 p-4 rounded-md bg-[var(--wp-success-bg)] text-[var(--wp-success)]">
+                        <p class="font-medium">Success! Your application has been submitted for review. Redirecting you to the marketplace...</p>
+                    </div>
+                }
+
+                <!-- Actions -->
+                <div class="mt-8 flex items-center justify-end gap-x-6">
+                    <button type="button" routerLink="/" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+                    <button type="submit" class="rounded-md bg-[var(--wp-primary)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[var(--wp-primary-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--wp-primary)] transition-colors">Submit for Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

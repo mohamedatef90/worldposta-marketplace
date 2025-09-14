@@ -454,4 +454,8 @@ export class MarketplaceService {
   getItemById(id: string) {
     return of(this.items.find(item => item.id === id));
   }
+  
+  addItem(item: MarketplaceItem) {
+    this.items.unshift(item);
+  }
 }

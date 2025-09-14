@@ -4,13 +4,11 @@ import { MarketplaceItem, Category } from '../../models/marketplace.model';
 import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { LottiePlayerComponent } from '../lottie-player/lottie-player.component';
-import { CLOUD_ANIMATION_DATA } from '../../assets/cloud-animation.data';
 
 @Component({
   selector: 'app-marketplace',
   standalone: true,
-  imports: [RouterLink, CommonModule, LottiePlayerComponent, NgOptimizedImage],
+  imports: [RouterLink, CommonModule, NgOptimizedImage],
   templateUrl: './marketplace.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -23,8 +21,6 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
   selectedCategory = signal<string>('popular');
   searchTerm = signal<string>('');
 
-  cloudAnimationData = CLOUD_ANIMATION_DATA;
-  
   // --- Start of slider logic ---
   currentSlideIndex = signal(0);
   private sliderIntervalId: any;
@@ -35,7 +31,7 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
     return [
       {
         type: 'image',
-        imageSrc: 'https://images.unsplash.com/photo-1660242164955-c6e208b0e43c?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        imageSrc: 'https://i.postimg.cc/g299tYj1/market.png',
         title: 'WorldPosta Marketplace',
         description: 'Deploy pre-configured apps and services on WorldPosta\'s reliable cloud infrastructure in just a few clicks.',
         buttonText: 'Explore All Apps',
@@ -43,15 +39,15 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
       },
       {
         type: 'image',
-        imageSrc: 'https://i.postimg.cc/nr7JfrR5/Candid-Photography-Image-1.png',
-        title: 'Powerful Content Management',
-        description: 'Launch your blog, portfolio, or enterprise website in minutes with our optimized one-click CMS solutions like WordPress, Ghost, and Strapi.',
-        buttonText: 'Explore CMS Apps',
-        buttonLink: ['/category', 'cms-publishing']
+        imageSrc: 'https://i.postimg.cc/266CGSr5/automation.png',
+        title: 'Automate Your Workflows',
+        description: 'Connect any app, design powerful workflows, and automate your work without writing a single line of code with tools like n8n.',
+        buttonText: 'Explore Automation Apps',
+        buttonLink: ['/category', 'automation-integration']
       },
       {
         type: 'image',
-        imageSrc: 'https://i.postimg.cc/9fgnf2sB/Candid-Photography-Image.png',
+        imageSrc: 'https://i.postimg.cc/zBZzYnxS/Online-Project-Analyst-Vector-Illustration.png',
         title: 'Discover Top-Rated Apps',
         description: 'Explore a rich ecosystem of powerful and trusted applications. Find bestsellers and spotlight apps to enhance your projects.',
         buttonText: 'Browse Popular Apps',
@@ -136,8 +132,6 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.marketplaceService.getItems().subscribe(items => this.items.set(items));
     this.marketplaceService.getCategories().subscribe(categories => this.categories.set(categories));
-    this.type();
-    this.startSlider();
   }
   
   ngOnDestroy() {

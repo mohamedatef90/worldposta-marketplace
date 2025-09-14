@@ -7,21 +7,19 @@
          [style.transform]="'translateX(-' + currentSlideIndex() * 100 + '%)'">
       @for (slide of slides(); track $index) {
         <div class="w-full flex-shrink-0">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[70vh] max-h-[700px] min-h-[500px]">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 h-full">
               <!-- Right: Image/Animation (Order first on mobile) -->
-              <div class="order-first md:order-last w-full md:w-5/12 h-64 md:h-96 flex items-center justify-center">
-                @if (slide.type === 'lottie') {
-                  <app-lottie-player [animationData]="slide.animationData" [speed]="0.5"></app-lottie-player>
-                } @else if (slide.type === 'icon') {
+              <div class="order-first md:order-last w-full md:w-5/12 h-1/2 md:h-full flex items-center justify-center">
+                @if (slide.type === 'icon') {
                   <div [innerHTML]="sanitizeIcon(slide.icon)" class="text-[var(--wp-primary)] w-48 h-48 md:w-64 md:h-64 opacity-80"></div>
                 } @else if (slide.type === 'image') {
-                  <img [ngSrc]="slide.imageSrc" width="500" height="170" class="rounded-lg object-contain" alt="{{ slide.title }}" [priority]="$index === 0">
+                  <img [ngSrc]="slide.imageSrc" width="800" height="650" class="rounded-lg object-contain w-full h-full" alt="{{ slide.title }}" priority>
                 }
               </div>
 
               <!-- Left: Content -->
-              <div class="text-center md:text-left md:w-6/12">
+              <div class="text-center md:text-left md:w-6/12 h-1/2 md:h-auto flex flex-col justify-center">
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--wp-secondary)]">{{ slide.title }}</h1>
                 <p class="mt-4 text-lg text-[var(--wp-text-secondary)] max-w-xl mx-auto md:mx-0">
                   {{ slide.description }}
