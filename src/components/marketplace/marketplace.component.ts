@@ -132,6 +132,8 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.marketplaceService.getItems().subscribe(items => this.items.set(items));
     this.marketplaceService.getCategories().subscribe(categories => this.categories.set(categories));
+    this.startSlider();
+    this.type();
   }
   
   ngOnDestroy() {
